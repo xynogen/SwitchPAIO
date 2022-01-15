@@ -86,18 +86,42 @@ void loop()
   Serial.println(F("Request: "));
   Serial.println(req);
 
-  if (req.indexOf(F("/SW/0/0")) != -1)
+  if (req.indexOf(F("/SW/0/0")) != -1) 
+  {
     SW0 = 0;
-  else if (req.indexOf(F("/SW/0/1")) != -1)
+    digitalWrite(D0, SW0);
+  }
+    
+  else if (req.indexOf(F("/SW/0/1")) != -1) 
+  {
     SW0 = 1;
-  else if (req.indexOf(F("/SW/1/0")) != -1)
+    digitalWrite(D0, SW0);
+  }
+    
+  else if (req.indexOf(F("/SW/1/0")) != -1) 
+  {
     SW1 = 0;
-  else if (req.indexOf(F("/SW/1/1")) != -1)
+    digitalWrite(D1, SW0);
+  }
+
+  else if (req.indexOf(F("/SW/1/1")) != -1) 
+  {
     SW1 = 1;
-  else if (req.indexOf(F("/SW/2/0")) != -1)
+    digitalWrite(D1, SW0);
+  }
+
+  else if (req.indexOf(F("/SW/2/0")) != -1) 
+  {
     SW2 = 0;
+    digitalWrite(D2, SW2);
+  }
+   
   else if (req.indexOf(F("/SW/2/1")) != -1)
+  {
     SW2 = 1;
+    digitalWrite(D2, SW2);
+  }
+    
   else
   {
     Serial.println(F("Invalid request"));
@@ -105,11 +129,6 @@ void loop()
     SW1 = digitalRead(D1);
     SW2 = digitalRead(D2);
   }
-
-  // Set the pin
-  digitalWrite(D0, SW0);
-  digitalWrite(D1, SW1);
-  digitalWrite(D2, SW2);
 
   while (client.available())
     client.read();
